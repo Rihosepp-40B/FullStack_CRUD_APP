@@ -1,6 +1,0 @@
-@FullStack_CRUD_APP.Server_HostAddress = http://localhost:5063
-
-GET {{FullStack_CRUD_APP.Server_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
