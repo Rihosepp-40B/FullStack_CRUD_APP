@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using FullStack_CRUD_APP.Server.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace FullStack_CRUD_APP.Server.Data
 {
