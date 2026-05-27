@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:65135",
+"RedirectUrl": "",
+"LaunchCommand": "npm run dev",
+"WorkingDirectory": "C:\\Users\\Riho\\PycharmProjects\\Respo\\FullStack_CRUD_APP\\FullStack_CRUD_APP.Server\\..\\fullstack_crud_app.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}
