@@ -8,5 +8,6 @@
 		public string Where {  get; set; } = string.Empty;
 		public DateTime When { get; set; }
 		public string Why { get; set; } = string.Empty;
+		public bool Done { get; set; } = false;
 	}
 }
