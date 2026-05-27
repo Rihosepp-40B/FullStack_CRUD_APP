@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="fullstack_crud_app.client/fullstack_crud_app.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="FullStack_CRUD_APP.Server/FullStack_CRUD_APP.Server.csproj" />
+</Solution>
