@@ -143,10 +143,15 @@ vite.config.ts.timestamp-*
 .vite/
 
 # .NET / C# Build outputs
-bin/
-obj/
+[Bb]in/
+[Oo]bj/
 *.AssemblyInfo.cs
 *.AssemblyInfoInputs.cache
+*.dll
+*.exe
+*.pdb
+*.json.cache
+*.cache
 
 # Visual Studio cache and configuration folders
 .vs/
@@ -155,3 +160,11 @@ obj/
 *.futdcache*
 *.dtbcache*
 *.csproj.user
+*user
+DocumentLayout.json
+
+# Frontend / Node Outputs
+node_modules/
+dist/
+build/
+.env*
