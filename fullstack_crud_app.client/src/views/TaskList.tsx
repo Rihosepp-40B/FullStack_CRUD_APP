@@ -21,8 +21,7 @@ export default function TaskList() {
                     setTask(data);
                 }
             } catch (error) {
-                const message = error instanceof Error ? error.message : "Failed to load tasks";
-                setError(message);
+                setError(error instanceof Error ? error.message : "Failed to load tasks");
             } finally {
                 setLoading(false)
             }
