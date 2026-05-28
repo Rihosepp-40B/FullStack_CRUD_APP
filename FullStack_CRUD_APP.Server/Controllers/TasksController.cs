@@ -1,5 +1,6 @@
 ﻿using FullStack_CRUD_APP.Server.Data;
 using FullStack_CRUD_APP.Server.Domain;
+using FullStack_CRUD_APP.Server.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FullStack_CRUD_APP.Server.Controllers
