@@ -21,7 +21,7 @@ namespace FullStack_CRUD_APP.Server.Controllers
 			var result = _context.Tasks
 				.Select(x => new TasksListViewModel
 				{
-					TaskId = x.TaskId,
+					TasksId = x.TasksId,
 					Who = x.Who,
 					What = x.What,
 					Where = x.Where,
@@ -43,7 +43,7 @@ namespace FullStack_CRUD_APP.Server.Controllers
 
 			var task = new Tasks
 			{
-				TaskId = Guid.NewGuid(),
+				TasksId = Guid.NewGuid(),
 				Who = model.Who,
 				What = model.What,
 				Where = model.Where,
@@ -57,7 +57,7 @@ namespace FullStack_CRUD_APP.Server.Controllers
 
 			return Ok(new
 			{
-				taskId = task.TaskId,
+				tasksId = task.TasksId,
 				who = task.Who,
 				what = task.What,
 				where = task.Where,
@@ -68,14 +68,14 @@ namespace FullStack_CRUD_APP.Server.Controllers
 		}
 
 		// GET: api/tasks/{id}
-		[HttpGet("{taskId:guid}")]
-		public IActionResult Detail(Guid taskId)
+		[HttpGet("{tasksId:guid}")]
+		public IActionResult Detail(Guid tasksId)
 		{
 			var task = _context.Tasks
-			.Where(x => x.TaskId == taskId)
+			.Where(x => x.TasksId == tasksId)
 			.Select(x => new TasksDetailViewModel
 			{
-				TaskId = x.TaskId,
+				TasksId = x.TasksId,
 				Who = x.Who,
 				What = x.What,
 				Where = x.Where,
@@ -92,10 +92,10 @@ namespace FullStack_CRUD_APP.Server.Controllers
 			return Ok(task);
 		}
 
-		[HttpPut("{taskId:guid}")]
-		public IActionResult Update(Guid taskId, [FromBody] TasksUpdateViewModel model)
+		[HttpPut("{tasksId:guid}")]
+		public IActionResult Update(Guid tasksId, [FromBody] TasksUpdateViewModel model)
 		{
-			var task = _context.Tasks.FirstOrDefault(x => x.TaskId == taskId);
+			var task = _context.Tasks.FirstOrDefault(x => x.TasksId == tasksId);
 			if (task == null)
 			{
 				return NotFound();	
@@ -117,10 +117,10 @@ namespace FullStack_CRUD_APP.Server.Controllers
 			return Ok();
 		}
 
-		[HttpDelete("{taskId:guid}")]
-		public IActionResult Delete(Guid taskId)
+		[HttpDelete("{tasksId:guid}")]
+		public IActionResult Delete(Guid tasksId)
 		{
-			var task = _context.Tasks.FirstOrDefault(x => x.TaskId == taskId);
+			var task = _context.Tasks.FirstOrDefault(x => x.TasksId == tasksId);
 			if (task == null)
 			{
 				return NotFound();

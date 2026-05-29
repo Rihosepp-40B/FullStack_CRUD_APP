@@ -30,8 +30,8 @@ export default function TaskList() {
         fetchTasks();
     }, []);
 
-    const openDetail = (taskId: string) => {
-        navigate(`/${taskId}`);
+    const openDetail = (tasksId: string) => {
+        navigate(`/${tasksId}`);
     }
 
     const openCreate = () => {
@@ -60,24 +60,24 @@ export default function TaskList() {
                     <tbody>
                         {task.length > 0 ? (
                             task.map((t) => (
-                                <tr key={t.taskId}>
+                                <tr key={t.tasksId}>
                                     <td>{t.who}</td>
                                     <td>{t.what}</td>
                                     <td>{t.when}</td>
                                     <td>
                                         <div style={{ display: "flex", gap: 8 }}>
                                             <button type="button" className="detail"
-                                                onClick={() => openDetail(t.taskId)}
+                                                onClick={() => openDetail(t.tasksId)}
                                             >
                                                 Detail
                                             </button>
 
                                             <button type="button" className="edit"
-                                                onClick={() => navigate(`/${t.taskId}/edit`)}>
+                                                onClick={() => navigate(`/${t.tasksId}/edit`)}>
                                                 Edit
                                             </button>
                                             <button type="button" className="delete"
-                                                onClick={() => navigate(`/${t.taskId}/delete`)}>
+                                                onClick={() => navigate(`/${t.tasksId}/delete`)}>
                                             </button>
                                         </div>
                                     </td>
