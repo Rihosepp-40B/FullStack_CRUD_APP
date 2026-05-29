@@ -39,7 +39,7 @@ export default function TaskCreate() {
             const payload = {
                 who: form.who,
                 what: form.what || null,
-                where: form.where || null,
+                where: form.where || "TBD",
                 when: form.when || null,
                 why: form.why || null,
                 done: false
@@ -87,7 +87,7 @@ export default function TaskCreate() {
                 </div>
                 <div>
                     <label>When</label>
-                    <input name="when" type="datetime-local" value={form.when} onChange={onChange} style={{ width: "100%", padding: 8 }} />
+                    <input name="when" type="datetime-local" value={form.when} required onChange={onChange} style={{ width: "100%", padding: 8 }} />
                 </div>
                 <div>
                     <label>Why</label>
@@ -98,7 +98,7 @@ export default function TaskCreate() {
                         {saving ? "Adding..." : "Add task"}
                     </button>
                     <button className="return" type="button" onClick={() => navigate("/")}>
-                        Back
+                        Return
                     </button>
                 </div>
             </form>
