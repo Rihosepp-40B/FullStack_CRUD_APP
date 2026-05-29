@@ -13,7 +13,7 @@ namespace FullStack_CRUD_APP.Server.Data
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<Tasks>().ToTable("TaskManager");
+			modelBuilder.Entity<Tasks>().ToTable("Tasks");
 		}
 	}
 }
