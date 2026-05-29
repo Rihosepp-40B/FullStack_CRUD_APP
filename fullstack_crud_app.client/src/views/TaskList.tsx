@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { Task } from "../types/task";
+import { formDTG } from "../helpers/formDTG"
 
 export default function TaskList() {
     const [task, setTask] = useState<Task[]>([]);
@@ -63,7 +64,7 @@ export default function TaskList() {
                                 <tr key={t.tasksId}>
                                     <td>{t.who}</td>
                                     <td>{t.what}</td>
-                                    <td>{t.when}</td>
+                                    <td style={{ width: "16ch"}}>{formDTG(t.when)}</td>
                                     <td>
                                         <div style={{ display: "flex", gap: 8 }}>
                                             <button type="button" className="detail"
@@ -78,6 +79,7 @@ export default function TaskList() {
                                             </button>
                                             <button type="button" className="delete"
                                                 onClick={() => navigate(`/${t.tasksId}/delete`)}>
+                                                Delete
                                             </button>
                                         </div>
                                     </td>
