@@ -5,6 +5,7 @@ import TaskList from './views/TaskList';
 import TaskCreate from './views/TaskCreate';
 import TaskDetail from './views/TaskDetail';
 import TaskEdit from './views/TaskEdit';
+import TaskDelete from './views/TaskDelete';
 
 export default function App() {
     return (
@@ -14,6 +15,7 @@ export default function App() {
                 <Route path="/create" element={<TaskCreate />} />
                 <Route path="/:tasksId" element={<TaskDetail />} />
                 <Route path="/:tasksId/edit" element={<TaskEdit />} />
+                <Route path="/:tasksId/delete" element={<TaskDelete />} />
             </Routes>
         </HashRouter>
     );
