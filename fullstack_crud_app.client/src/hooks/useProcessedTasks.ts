@@ -118,7 +118,7 @@ export function useProcessedTasks(initialTasks: Task[]) {
     };
 
     const handleFilterChange = (column: keyof typeof searchFilters, value: string) => {
-        setSearchFilters(prev => ({ ...prev, [column]: value }));
+        setSearchFilters((prev: Record<string, string>) => ({ ...prev, [column]: value }));
     };
 
     const getSortIndicator = (key: keyof Task) => {

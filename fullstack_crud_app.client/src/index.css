@@ -61,7 +61,7 @@ h1 {
 	}
 }
 
-p, label, input, textarea {
+label, input, textarea {
 	color: var(--text) !important;
 	font-family: Arial, Helvetica, sans-serif !important;
 }
