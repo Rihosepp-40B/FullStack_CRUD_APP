@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Task } from "../types/task";
 import { formDTG } from "../helpers/formDTG";
 
@@ -12,17 +12,31 @@ interface SortRule {
 export function useProcessedTasks(initialTasks: Task[]) {
 
     // olekud filtreerimse ja sorteerimise jaoks ---
-    const [searchFilters, setSearchFilters] = useState({
-        who: "",
-        what: "",
-        when: "",
-        done: ""
+    const [searchFilters, setSearchFilters] = useState(() => {
+        const savedFilters = localStorage.getItem("task_search_filters");
+        return savedFilters ? JSON.parse(savedFilters) : {
+            who: "",
+            what: "",
+            when: "",
+            done: ""
+        };
     });
 
-    const [sortConfig, setSortConfig] = useState<SortRule[]>([
-        { key: "done", direction: "asc" },
-        { key: "when", direction: "asc"}
-    ]);
+    const [sortConfig, setSortConfig] = useState<SortRule[]>(() => {
+        const savedSort = localStorage.getItem("task_sort_config");
+        return savedSort ? JSON.parse(savedSort) : [
+            { key: "done", direction: "asc" },
+            { key: "when", direction: "asc" }
+        ];
+    });
+
+    useEffect(() => {
+        localStorage.setItem("task_search_filters", JSON.stringify(searchFilters));
+    }, [searchFilters]);
+
+    useEffect(() => {
+        localStorage.setItem("task_sort_config", JSON.stringify(sortConfig));
+    }, [sortConfig]);
 
     // filtreerimise ja sorteerimise loogika
     const processedTasks = useMemo(() => {
