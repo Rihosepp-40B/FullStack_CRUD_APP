@@ -67,12 +67,12 @@ export default function TaskCreate() {
     };
     
     return (
-        <div>
+        <div style={{ margin: "auto", maxWidth: 520 }}>
             <h1>Add Task</h1>
 
             {error && <p style={{ color: "crimson" }}>{error}</p>}
 
-            <form onSubmit={onSubmit} style={{ display: "grid", gap: 12, maxWidth: 520 }}>
+            <form onSubmit={onSubmit} style={{ display: "grid", gap: 12, maxWidth: 500 }}>
                 <div>
                     <label>Who</label>
                     <input name="who" value={form.who} onChange={onChange} required style={{ width: "100%", padding: 8 }} />

@@ -105,7 +105,7 @@ export default function TaskEdit() {
     if (loading) return <div style={{ padding: "20px" }}>Loading...</div>
 
     return (
-        <div className="page-card">
+        <div style={{ margin: "auto", maxWidth: 520 }}>
             <h1>Edit Task</h1>
 
             {error && <p style={{ color: "crimson" }}>{error}</p>}

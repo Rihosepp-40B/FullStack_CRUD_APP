@@ -1,11 +1,190 @@
-﻿#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+﻿table {
+	border-collapse: separate;
+	border-spacing: 0;
+	width: 100%;
+	background: rgba(255,255,255,0.08);
+	backdrop-filter: blur(8px);
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-th, td {
-    padding-left: 1rem;
-    padding-right: 1rem;
+th {
+	background: rgba(255,255,255,0.15);
+	padding: 12px;
+	font-weight: 600;
 }
+
+td {
+	padding: 10px;
+}
+
+tr:nth-child(even) {
+	background: rgba(255,255,255,0.05);
+}
+
+tr:hover {
+	background: rgba(255,255,255,0.12);
+}
+
+
+button {
+	border: none;
+	padding: 6px 14px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-weight: 600;
+	transition: all 0.2s ease;
+}
+
+
+button.detail {
+	background: linear-gradient(135deg, #3b82f6, #2563eb);
+	color: white;
+}
+
+button.detail:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(59,130,246,0.6);
+}
+
+
+button.delete {
+	background: linear-gradient(135deg, #ef4444, #b91c1c);
+	color: white;
+}
+
+button.delete:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(239,68,68,0.6);
+}
+
+
+button.return {
+	background: linear-gradient(135deg, #9ca3af, #6b7280);
+	color: white;
+}
+
+button.return:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(156,163,175,0.6);
+}
+
+h1 {
+	text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+button.create {
+	background: linear-gradient(135deg, #22c55e, #15803d);
+	color: white;
+}
+
+button.create:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(34,197,94,0.6);
+}
+
+button.edit {
+	background: linear-gradient(135deg, #facc15, #eab308);
+	color: #1f2937;
+	font-weight: 700;
+}
+
+button.edit:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(250,204,21,0.6);
+}
+
+
+/* 1. Nuppude ümbrise baasstiil */
+.action-buttons-container {
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap; /* Kui ruumi on liiga vähe, lubab nuppudel kukkuda üksteise alla */
+}
+
+/* Vaikimisi (suurel ekraanil) on sümbolid peidetud */
+.action-buttons-container .btn-icon {
+	display: none;
+}
+
+/* 2. VÄIKE EKRAAN (mobiilid ja kitsad aknad - alla 600px) */
+@media (max-width: 600px) {
+	.action-buttons-container {
+		flex-direction: column; /* Paneb nupud rangelt üksteise alla */
+		width: 100%;
+	}
+
+	/* Peidame tekstid ja kuvame sümbolid */
+	.action-buttons-container .btn-text {
+		display: none;
+	}
+
+	.action-buttons-container .btn-icon {
+		display: inline-block;
+		font-size: 1.1rem; /* Teeme sümboli veidi suuremaks ja loetavamaks */
+	}
+
+	/* Muudame nupud kompaktsemaks (vähem paddingut), kuna sümbol vajab vähem ruumi */
+	.action-buttons-container button {
+		padding: 0.5rem 0.7rem;
+		width: 100%; /* Nupud venivad täislaiusesse, et mobiilis oleks mugavam vajutada */
+	}
+}
+
+.breakable-cell {
+	/*´murrab tabeli lahtris sõnad, mille pikkus on rohkem kui soovitud lahtri hetke laius*/
+	word-break: break-word;
+	overflow-wrap: break-word;
+}
+
+.three-line-clamp {
+	/* kuvab ainult kuni 3 rida lahtris olevas tekstist */
+	display: -webkit-box;
+	-webkit-line-clamp: 3; /* Maksimaalselt 3 rida */
+	-webkit-box-orient: vertical;
+	overflow: hidden; /* Peidab ülejäänud teksti */
+	word-break: break-word;
+}
+
+/* Task'id mis on tehtud, need read värvitakse roheliseks
+(paaris ja paaritud read erinevad ning hover) */
+tr.task-done {
+	background-color: rgba(34, 197, 94, 0.15) !important;
+}
+
+	tr:nth-child(even).task-done {
+		background-color: rgba(34, 197, 94, 0.2) !important;
+	}
+
+	tr.task-done:hover {
+		background-color: rgba(34, 197, 94, 0.3) !important;
+	}
+
+/* Task'id mis on tegemata ning ületanud aja, need read värvitakse
+punaseks (paaris ja paaritud read erinevad ning hover) */
+tr.task-overdue {
+	background-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+	tr:nth-child(even).task-overdue {
+		background-color: rgba(239, 68, 68, 0.25) !important;
+	}
+
+	tr.task-overdue:hover {
+		background-color: rgba(239, 68, 68, 0.35) !important;
+	}
+
+/* Task'id mis on tegemata ning tähtaeg on 24 tunni jooksul, need read
+värvitakse oranžiks (paaris ja paaritud read erinevad ning hover) */
+tr.task-warning {
+	background-color: rgba(255, 115, 22, 0.15) !important;
+}
+
+	tr:nth-child(even).task-warning {
+		background-color: rgba(255, 115, 22, 0.2) !important;
+	}
+
+	tr.task-warning:hover {
+		background-color: rgba(249, 115, 22, 0.35) !important;
+	}

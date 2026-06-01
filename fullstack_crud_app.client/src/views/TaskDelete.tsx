@@ -69,7 +69,7 @@ export default function TaskDelete() {
         )
     }
     return (
-        <div>
+        <div style={{ margin: "auto", maxWidth: 520 }}>
             <h1>Delete Task</h1>
 
             {error && <p style={{ color: "crimson" }}>{error}</p>}

@@ -61,22 +61,22 @@ export default function TaskList() {
                 <table border={1} style={{ width: "100%", borderCollapse: "collapse", marginTop: 20 }}>
                     <thead>
                         <tr>
-                            <th onClick={() => handleSort("who")} style={{ cursor: "pointer", userSelect: "none" }}>
+                            <th onClick={() => handleSort("who")} style={{ cursor: "pointer", userSelect: "none", maxWidth: "10%" }}>
                                 Who{getSortIndicator("who")} 
                             </th>
-                            <th onClick={() => handleSort("what")} style={{ cursor: "pointer", userSelect: "none" }}>
+                            <th onClick={() => handleSort("what")} style={{ cursor: "pointer", userSelect: "none", maxWidth: "10%" }}>
                                 What{getSortIndicator("what")}
                             </th>
-                            <th onClick={() => handleSort("when")} style={{ cursor: "pointer", userSelect: "none" }}>
+                            <th onClick={() => handleSort("when")} style={{ cursor: "pointer", userSelect: "none", maxWidth: "10%" }}>
                                 When{getSortIndicator("when")}
                             </th>
-                            <th onClick={() => handleSort("done")} style={{ cursor: "pointer", userSelect: "none", width: 220 }}>
+                            <th onClick={() => handleSort("done")} style={{ cursor: "pointer", userSelect: "none", maxWidth: "10%" }}>
                                 {"Tasks: "}
                                 <select
                                     value={searchFilters.done}
                                     onClick={(e) => e.stopPropagation()}
                                     onChange={(e) => { e.stopPropagation(); handleFilterChange("done", e.target.value); }}
-                                    style={{ width: "50%", padding: "4px" }}
+                                    style={{ maxWidth: "50%", padding: "4px" }}
                                 >
                                     <option value="">All</option>
                                     <option value="false">Not Done</option>
@@ -117,33 +117,57 @@ export default function TaskList() {
                     </thead>
                     <tbody>
                         {processedTasks.length > 0 ? (
-                            processedTasks.map((t) => (
-                                <tr key={t.tasksId}>
-                                    <td>{t.who}</td>
-                                    <td>{t.what}</td>
-                                    <td style={{ width: "16ch"}}>{formDTG(t.when)}</td>
-                                    <td>
-                                        <div style={{ display: "flex", gap: 8 }}>
-                                            <button type="button" className="detail"
-                                                onClick={() => openDetail(t.tasksId)}
-                                            >
-                                                Detail
-                                            </button>
+                            processedTasks.map((t) => {
+                                // rea klassi loogika - tehtud task'id ja tegemata (üleaja ning tähtaeg kohe)
+                                let rowClass = "";
 
-                                            <button type="button" className="edit"
-                                                onClick={() => navigate(`/${t.tasksId}/edit`)}>
-                                                Edit
-                                            </button>
-                                            <button type="button" className="delete"
-                                                onClick={() => navigate(`/${t.tasksId}/delete`)}>
-                                                Delete
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))
+                                if (t.done) {
+                                    rowClass = "task-done";
+                                } else {
+                                    const taskDate = new Date(t.when);
+                                    const now = new Date();
+                                    const diffInMs = taskDate.getTime() - now.getTime();
+                                    const diffInHours = diffInMs / (1000 * 60 * 60);
+
+                                    if (diffInMs < 0) {
+                                        rowClass = "task-overdue";
+                                    } else if (diffInHours <= 24) {
+                                        rowClass = "task-warning";
+                                    }
+                                }
+                                return (
+                                    <tr key={t.tasksId} className={rowClass}>
+                                        <td className="breakable-cell" style={{ width: "20%" }}><div className="three-line-clamp">{t.who}</div></td>
+                                        <td className="breakable-cell" style={{ width: "37%" }}><div className="three-line-clamp">{t.what}</div></td>
+                                        <td className="breakable-cell" style={{ width: "18%" }}>{formDTG(t.when)}</td>
+                                        <td className="breakable-cell" style={{ width: "25%" }}>
+                                            <div className="action-buttons-container" style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                                                <button type="button" className="detail"
+                                                    onClick={() => openDetail(t.tasksId)}
+                                                >
+                                                    <span className="btn-icon">📖</span>
+                                                    <span className="btn-text">Detail 📖</span>
+                                                </button>
+
+                                                <button type="button" className="edit"
+                                                    onClick={() => navigate(`/${t.tasksId}/edit`)}>
+                                                    <span className="btn-icon">✎</span>
+                                                    <span className="btn-text">Edit ✎</span>
+                                                </button>
+                                                <button type="button" className="delete"
+                                                    onClick={() => navigate(`/${t.tasksId}/delete`)}>
+                                                    <span className="btn-icon">✖</span>
+                                                    <span className="btn-text">Delete ✖</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })
                         ) : (
-                            <tr>Loading tasks or data not found...</tr>
+                                <tr>
+                                    <td colSpan={4}>Loading tasks or data not found...</td>
+                                </tr>
                         )}
                     </tbody>
                 </table>

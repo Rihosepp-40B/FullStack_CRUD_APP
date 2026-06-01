@@ -63,37 +63,37 @@ export default function TaskDetail() {
     }
 
     return (
-        <div style={{ padding: 20, maxWidth: 720, margin: "0 auto" }}>
+        <div style={{ margin: "auto", maxWidth: 520 }}>
             <h1>Task Detail</h1>
 
             <table border={1} cellPadding={8} cellSpacing={0} style={{ width: "100%", marginTop: 10 }}>
                 <tbody>
                     <tr>
-                        <th style={{ textAlign: "left", width: 200 }}>ID</th>
+                        <th style={{ textAlign: "left", width: 100 }}>ID</th>
                         <td>{task.tasksId}</td>
                     </tr>
                     <tr>
-                        <th style={{ textAlign: "left", width: 200 }}>Who</th>
+                        <th style={{ textAlign: "left", width: 100 }}>Who</th>
                         <td>{task.who}</td>
                     </tr>
                     <tr>
-                        <th style={{ textAlign: "left", width: 200 }}>What</th>
+                        <th style={{ textAlign: "left", width: 100 }}>What</th>
                         <td>{task.what}</td>
                     </tr>
                     <tr>
-                        <th style={{ textAlign: "left", width: 200 }}>Where</th>
+                        <th style={{ textAlign: "left", width: 100 }}>Where</th>
                         <td>{task.where}</td>
                     </tr>
                     <tr>
-                        <th style={{ textAlign: "left", width: 200 }}>When</th>
+                        <th style={{ textAlign: "left", width: 100 }}>When</th>
                         <td>{formDTG(task.when)}</td>
                     </tr>
                     <tr>
-                        <th style={{ textAlign: "left", width: 200 }}>Why</th>
+                        <th style={{ textAlign: "left", width: 100 }}>Why</th>
                         <td>{task.why}</td>
                     </tr>
                     <tr>
-                        <th style={{ textAlign: "left", width: 200 }}>Done</th>
+                        <th style={{ textAlign: "left", width: 100 }}>Done</th>
                         <td>{task.done ? "Completed" : "Not Done"}</td>
                     </tr>
                 </tbody>
