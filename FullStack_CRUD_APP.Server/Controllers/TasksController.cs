@@ -110,6 +110,7 @@ namespace FullStack_CRUD_APP.Server.Controllers
 			task.What = model.What;
 			task.Where = model.Where;
 			task.When = model.When;
+			task.Why = model.Why;
 			task.Done = model.Done;
 
 			_context.SaveChanges();
